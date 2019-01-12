@@ -6,12 +6,13 @@ mongoose.connect("mongodb://localhost/neighborCorps");
 
 const users = [
   new User({
-    createdby: '',
-    createdby: '',
+    name: "Pushpinder"
   }),
   new User({
-    createdby: '',
-    
+    name: "Scott"
+  }),
+  new User({
+    name: "Hy"
   })
 ];
 

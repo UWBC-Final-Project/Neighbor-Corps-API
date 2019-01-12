@@ -2,20 +2,17 @@ const Task = require('../models/task');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/neighborCorps");
+mongoose.connect("mongodb://27017/neighborCorps");
 
 const tasks = [
   new Task({
-    createdby: '',
-    createdby: '',
+    createdBy: "Kevin",
   }),
   new Task({
-    createdby: '',
-    createdby: '',
+    createdBy: "Hy",
   }),
   new Task({
-    createdby: '',
-    createdby: '',
+    createdBy: "Jia",
   }),
 ];
 

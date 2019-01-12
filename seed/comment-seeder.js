@@ -6,16 +6,13 @@ mongoose.connect("mongodb://localhost/neighborCorps");
 
 const comments = [
   new Comment({
-    createdby: '',
-    createdby: '',
+    createdBy: "Hy",
   }),
   new Comment({
-    createdby: '',
-    createdby: '',
+    createdBy: "Jia",
   }),
   new Comment({
-    createdby: '',
-    createdby: '',
+    createdBy: "Kevin",
   }),
 ];
 
