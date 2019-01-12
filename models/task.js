@@ -25,7 +25,3 @@ UserSchema.methods.lastUpdatedDate = function() {
 const Task = mongoose.model("Task", taskSchema);
 
 module.exports = Task;
-
-
-
-
