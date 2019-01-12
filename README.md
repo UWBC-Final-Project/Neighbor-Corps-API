@@ -1,62 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Neighbor Corps
 
-## Available Scripts
+## UWBC Final Project
 
-In the project directory, you can run:
+#### Summary
+Our app serves as a community task-sharing platform, enabling neighbors to be better stewards by flagging opportunities for improvement in their immediate vicinity, and responding with hands-on involvement making for cleaner, safer, and more enjoyable neighborhoods!
 
-### `npm start`
+This app utilizes a Maps API with GPS tagging to allow anyone to indicate an opportunity for community improvement, like clearing rubbish, removing broken glass, or clearing storm grates. Flagging a location is quick and easy to complete as a passer-by, and adds the task to a public ledger that other users within the vicinity can view. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The user who flagged the issue can return themselves later on to complete the task, or other users can take it upon themselves to either resolve or expand upon the need at hand. By flagging, adding notes to, and completing tasks in their neighborhood, users gain merit as community leaders, and play a role in making stronger, better connected communities.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### MVP
 
-### `npm test`
+In the MVP version users will be able to:
+* Create Task, a GPS-tagged post with image and time-stamp
+* View list of all active Tasks within adjustable radius of current position
+* View all active Tasks displayed on a map, and jump to Task post on click
+* Update a Task post with additional notes
+* After performing a Task, verify with photo and GPS data and mark Task Complete
+* Earn merit for posting, updating, and completing Tasks - Reputation
+* Anonymous profile but opt in to public
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
