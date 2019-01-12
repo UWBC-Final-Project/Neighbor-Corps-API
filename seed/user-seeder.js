@@ -15,5 +15,10 @@ const users = [
   })
 ];
 
-users.forEach(u => u.save());
 
+
+async function seedAndDisconnect(data) {
+  data.forEach(i => i.save())
+}
+
+seedAndDisconnect(users).then(mongoose.disconnect());

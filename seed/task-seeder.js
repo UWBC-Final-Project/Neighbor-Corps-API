@@ -19,4 +19,8 @@ const tasks = [
   }),
 ];
 
-tasks.forEach(t => t.save());
+async function seedAndDisconnect(data) {
+  data.forEach(i => i.save())
+}
+
+seedAndDisconnect(tasks).then(mongoose.disconnect());

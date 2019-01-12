@@ -19,4 +19,8 @@ const comments = [
   }),
 ];
 
-comments.forEach(c => c.save());
+async function seedAndDisconnect(data) {
+  data.forEach(i => i.save())
+}
+
+seedAndDisconnect(comments).then(mongoose.disconnect());
