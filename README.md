@@ -40,6 +40,7 @@ Like Jia, anyone within the right radius of the task is free to contribute. So w
 
 At her desk at work, Pushpinder receives a notification that Jia and Hy have cleared the issue that she first flagged, and gets a share of the satisfaction that comes from working together to solve a problem. She sends a short ‘Kudos!’ to them both, and looks forward to helping out with a future task.
 
+***
 
 ##### Future Features and App Potential
 
