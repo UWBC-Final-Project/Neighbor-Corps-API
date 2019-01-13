@@ -2,7 +2,9 @@ const Task = require('../models/task');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://27017/neighborCorps");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/neighborCorps"
+);
 
 const tasks = [
   new Task({

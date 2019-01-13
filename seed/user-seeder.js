@@ -2,7 +2,9 @@ const User = require('../models/user');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/neighborCorps");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/neighborCorps"
+);
 
 const users = [
   new User({
