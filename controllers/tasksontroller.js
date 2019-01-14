@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the tasksController
+// KPH - Defining methods for the tasksController - Boilerplate
 module.exports = {
   findAll: function(req, res) {
     db.Task

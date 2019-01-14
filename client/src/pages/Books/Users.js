@@ -27,7 +27,7 @@ class Users extends Component {
   loadUsers = () => {
     API.getUsers()
       .then(res =>
-        this.setState({ users: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ users: res.data, username: "", password: "", address: "" })
       )
       .catch(err => console.log(err));
   };
@@ -51,11 +51,14 @@ class Users extends Component {
   // Then reload users from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.username && this.state.password) {
       API.saveUser({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        phone: this.state.phone,
+        address: this.state.address,
+        meritscore: this.state.meritscore
       })
         .then(res => this.loadUsers())
         .catch(err => console.log(err));
@@ -72,25 +75,43 @@ class Users extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.username}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name="username"
+                placeholder="USERNAME"
               />
               <Input
-                value={this.state.author}
+                value={this.state.password}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="password"
+                placeholder="PASSWORD"
               />
-              <TextArea
-                value={this.state.synopsis}
+              <Input
+                value={this.state.email}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="email"
+                placeholder="EMAIL"
+              />
+              <Input
+                value={this.state.phone}
+                onChange={this.handleInputChange}
+                name="phone"
+                placeholder="PHONE"
+              />
+              <Input
+                value={this.state.address}
+                onChange={this.handleInputChange}
+                name="address"
+                placeholder="ADDRESS"
+              />
+              <Input
+                value={this.state.meritscore}
+                onChange={this.handleInputChange}
+                name="meritscore"
+                placeholder="MERITSCORE"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.username)}
                 onClick={this.handleFormSubmit}
               >
                 Submit User
@@ -108,7 +129,7 @@ class Users extends Component {
                     <ListItem key={user._id}>
                       <a href={"/users/" + user._id}>
                         <strong>
-                          {user.title} by Placeholder
+                          {user.username}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteUser(user._id)} />

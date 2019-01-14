@@ -1,10 +1,5 @@
 import axios from "axios";
 
-
-
-
-
-
 export default {
   // Gets all books
   getBooks: function() {
@@ -22,7 +17,7 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   },
-
+  // ---->  KPH Adding Boilerplate to get to the express API
   // Gets all Users
   getUsers: function() {
     return axios.get("/api/users");
@@ -32,15 +27,15 @@ export default {
     return axios.get("/api/users/" + id);
   },
   // Deletes the user with the given id
-  deleteBook: function(id) {
+  deleteUser: function(id) {
     return axios.delete("/api/users/" + id);
   },
   // Saves a user to the database
-  saveBook: function(userData) {
+  saveUser: function(userData) {
     return axios.post("/api/users", userData);
   },
   // Gets all Tasks
-  getTask: function() {
+  getTasks: function() {
     return axios.get("/api/tasks");
   },
   // Gets the Task with the given id
@@ -56,7 +51,7 @@ export default {
     return axios.post("/api/tasks", taskData);
   },
   // Gets all Comments
-  getComment: function() {
+  getComments: function() {
     return axios.get("/api/comments");
   },
   // Gets the Comment with the given id
@@ -71,4 +66,6 @@ export default {
   saveComment: function(commentData) {
     return axios.post("/api/comments", commentData);
   }
+  // <----  KPH Adding Boilerplate to get to the express API
+  
 };

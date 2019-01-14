@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the commentsController
+// KPH Defining methods for the commentsController - Boilerplate
 module.exports = {
   findAll: function(req, res) {
     db.Comment
