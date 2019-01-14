@@ -60,7 +60,8 @@ class Users extends Component {
         address: this.state.address,
         meritscore: this.state.meritscore
       })
-        .then(res => this.loadUsers())
+        .then(console.log("FARTS"))
+        // .then(res => this.loadUsers())
         .catch(err => console.log(err));
     }
   };
