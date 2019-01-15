@@ -128,6 +128,7 @@ describe('User Model Fields', function () {
     });
 });
 
+// v ------------- EXAMPLE SCHEMA FIELDS ------------- v
 
 // const userSchema = new Schema({
 //     username: { type: String, unique: true, required: true },
@@ -137,3 +138,5 @@ describe('User Model Fields', function () {
 //     address: { type: String },
 //     meritscore: { type: Number }
 //   });
+
+// ^ ------------- EXAMPLE SCHEMA FIELDS ------------- ^
