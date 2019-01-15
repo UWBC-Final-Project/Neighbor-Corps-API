@@ -11,6 +11,15 @@ class Tasks extends Component {
   state = {
     tasks: [],
     // NEED SPECIAL ATTENTION TO MAKE IT REFLECT MODEL
+    title:"" ,
+    description: "",
+    imageURL: "",
+    postion: "", // save what we grasp from Google map pinned location
+    // tags:[],
+    // postedBy: "",
+    // comments: [],
+    // postDate: "", 
+    // lastUpdated: ""
   };
 
   // When the component mounts, load all Tasks and save them to this.state.Tasks
@@ -22,7 +31,8 @@ class Tasks extends Component {
   loadTasks = () => {
     API.getTasks()
       .then(res =>
-        this.setState({ Tasks: res.data })
+        this.setState({ tasks: res.data, title: "", description:"",imageURL: "",postion: "",
+          tags: "", postedBy: "", comments: "", postDate: "", lastUpdated: "" })
       )
       .catch(err => console.log(err));
   };
@@ -46,13 +56,22 @@ class Tasks extends Component {
   // Then reload Tasks from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.Taskname && this.state.password) {
+ 
       API.saveTask({
+        title:this.state.title,
+        description: this.state.description,
+        imageURL: this.state.imageURL,
+        postion:this.state.postion, // save what we grasp from Google map pinned location
+        // tags:[],
+        // postedBy:this.state.postedBy,
+        // comments: [],
+        // postDate: this.state.postDate, 
+        // lastUpdated:this.state.lastUpdated
     // NEED SPECIAL ATTENTION TO MAKE IT REFLECT MODEL
       })
         .then(res => this.loadTasks())
         .catch(err => console.log(err));
-    }
+    
   };
 
   render() {
@@ -65,14 +84,62 @@ class Tasks extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.taskname}
+                value={this.state.title}
                 onChange={this.handleInputChange}
-                name="taskname"
-                placeholder="taskNAME"
+                name="title"
+                placeholder="title"
+                />
+                <Input
+                value={this.state.discription}
+                onChange={this.handleInputChange}
+                name="discription"
+                placeholder="discription"
+              />
+              <Input
+              value={this.state.imageURL}
+              onChange={this.handleInputChange}
+              name="imageURL"
+              placeholder="imageURL"
+              />
+              <Input
+              value={this.state.postion}
+              onChange={this.handleInputChange}
+              name="postion"
+              placeholder="postion"
+            />
+              <Input
+              value={this.state.tags}
+              onChange={this.handleInputChange}
+              name="tags"
+              placeholder="tags"
+            />
+              <Input
+              value={this.state.postedBy}
+              onChange={this.handleInputChange}
+              name="postedBy"
+              placeholder="postedBy"
+            />
+              <Input
+              value={this.state.comments}
+              onChange={this.handleInputChange}
+              name="comments"
+              placeholder="comments"
+            />
+              <Input
+              value={this.state.postDate}
+              onChange={this.handleInputChange}
+              name="postDate"
+              placeholder="postDate"
+            />
+              <Input
+              value={this.state.lastUpdated}
+              onChange={this.handleInputChange}
+              name="lastUpdated"
+              placeholder="lastUpdated"
               />
               {/* // NEED SPECIAL ATTENTION TO MAKE IT REFLECT MODEL */}
               <FormBtn
-                disabled={!(this.state.taskname)}
+                disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Task
@@ -90,7 +157,7 @@ class Tasks extends Component {
                     <ListItem key={task._id}>
                       <a href={"/tasks/" + task._id}>
                         <strong>
-                          {task.taskname}
+                          {task.title}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteTask(task._id)} />
