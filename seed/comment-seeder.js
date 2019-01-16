@@ -2,7 +2,9 @@ const Comment = require('../models/comment');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/neighborCorps");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/neighborCorps"
+);
 
 const comments = [
   new Comment({

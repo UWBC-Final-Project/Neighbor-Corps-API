@@ -14,7 +14,7 @@ const taskSchema = new Schema({
 });
 
 // Custom method `lastUpdatedDate`
-UserSchema.methods.lastUpdatedDate = function() {
+taskSchema.methods.lastUpdatedDate = function() {
   // Set post's `lastUpdated` property to the current date/time
   this.lastUpdated = Date.now();
   // Return this new date
