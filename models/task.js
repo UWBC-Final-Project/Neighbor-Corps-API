@@ -5,7 +5,7 @@ const taskSchema = new Schema({
   title: { type: String, required: true },
   description: {type: String},
   imageURL: {type: String},
-  postion: { type: Array }, // save what we grasp from Google map pinned location
+  position: { type: Array }, // save what we grasp from Google map pinned location
   tags:[{type: String}],
   postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   comments: [{body:"string", by: mongoose.Schema.Types.ObjectId}],

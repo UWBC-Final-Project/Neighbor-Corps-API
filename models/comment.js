@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
-  createdBy: { type: String, required: true },
-  username: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
   description: {type: String, required: true},
+  username: { type: String, unique: true, required: true },
+  tags:[{type: String}],
+  comments: [{body:"string", by: mongoose.Schema.Types.ObjectId}],
+  postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  postDate: { type: Date, default: Date.now }
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
