@@ -10,6 +10,11 @@ class Comments extends Component {
   // Setting our component's initial state
   state = {
     comments: [],
+    description: "",
+    username: "",
+    // tags:[],
+    postedBy:"",
+    postDate:""
   };
 
   // When the component mounts, load all Comments and save them to this.state.Comments
@@ -21,7 +26,8 @@ class Comments extends Component {
   loadComments = () => {
     API.getComments()
       .then(res =>
-        this.setState({ comments: res.data})
+        this.setState({ comments: res.data, description: "", username: "",
+        tags:"", postedBy:"", postDate:"" })
       )
       .catch(err => console.log(err));
   };
@@ -34,7 +40,7 @@ class Comments extends Component {
   };
 
   // Handles updating component state when the Comment types into the input field
-  handleInputChange = event => {
+  handleCommentChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -45,14 +51,20 @@ class Comments extends Component {
   // Then reload Comments from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.Commentname && this.state.password) {
       API.saveComment({
-        // NEEDS CUSTOM CODE!!!!!
+        description: this.state.description,
+        username: this.state.username,
+        tags: this.state.tags,
+        postedBy: this.state.postedBy,
+        postDate: this.state.postDate
+        // i think posted by and usename is kind of getting 
+        //the same information, lets discuss if we need both 
+        //or just one ~~ PK
       })
-        .then(console.log("FARTS"))
+        .then(res => this.loadComments())
         // .then(res => this.loadComments())
         .catch(err => console.log(err));
-    }
+    
   };
 
   render() {
@@ -66,14 +78,38 @@ class Comments extends Component {
             <form>
               {/* // !!!! NEEDS SPECIAL ATTENTION! */}
               <Input
-                value={this.state.commentname}
-                onChange={this.handleInputChange}
-                name="commentname"
-                placeholder="commentNAME"
+                value={this.state.description}
+                onChange={this.handleCommentChange}
+                name="description"
+                placeholder="description"
               />
+              <Input
+              value={this.state.username}
+              onChange={this.handleCommentChange}
+              name="username"
+              placeholder="username"
+            />
+              <Input
+              value={this.state.tags}
+              onChange={this.handleCommentChange}
+              name="tags"
+              placeholder="tags"
+            />
+              <Input
+              value={this.state.postedBy}
+              onChange={this.handleCommentChange}
+              name="postedBy"
+              placeholder="postedBy"
+            />
+            <Input
+            value={this.state.postDate}
+            onChange={this.handleCommentChange}
+            name="postDate"
+            placeholder="postDate"
+          />
 
               <FormBtn
-                disabled={!(this.state.commentname)}
+                disabled={!(this.state.description)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Comment
@@ -91,8 +127,7 @@ class Comments extends Component {
                     <ListItem key={comment._id}>
                       <a href={"/comments/" + comment._id}>
                         <strong>
-                          {/* // NOPE This needs to change */}
-                          {comment.commentname}
+                          {comment.description}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteComment(comment._id)} />

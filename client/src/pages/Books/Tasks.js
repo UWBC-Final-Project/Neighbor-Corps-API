@@ -15,7 +15,7 @@ class Tasks extends Component {
     title:"" ,
     description: "",
     imageURL: "",
-    postion: "", // save what we grasp from Google map pinned location
+    postion: "" // save what we grasp from Google map pinned location
     // tags:[],
     // postedBy: "",
     // comments: [],
@@ -46,7 +46,7 @@ class Tasks extends Component {
   };
 
   // Handles updating component state when the Task types into the input field
-  handleInputChange = event => {
+  handleTaskChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -57,12 +57,12 @@ class Tasks extends Component {
   // Then reload Tasks from the database
   handleFormSubmit = event => {
     event.preventDefault();
- 
+ //...... we might put a condition here before we save the task to our database ~~ PK
       API.saveTask({
         title:this.state.title,
         description: this.state.description,
         imageURL: this.state.imageURL,
-        postion:this.state.postion, // save what we grasp from Google map pinned location
+        postion:this.state.postion // save what we grasp from Google map pinned location
         // tags:[],
         // postedBy:this.state.postedBy,
         // comments: [],
@@ -86,55 +86,55 @@ class Tasks extends Component {
             <form>
               <Input
                 value={this.state.title}
-                onChange={this.handleInputChange}
+                onChange={this.handleTaskChange}
                 name="title"
                 placeholder="title"
                 />
                 <Input
                 value={this.state.discription}
-                onChange={this.handleInputChange}
+                onChange={this.handleTaskChange}
                 name="discription"
                 placeholder="discription"
               />
               <Input
               value={this.state.imageURL}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="imageURL"
               placeholder="imageURL"
               />
               <Input
               value={this.state.postion}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="postion"
               placeholder="postion"
             />
               <Input
               value={this.state.tags}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="tags"
               placeholder="tags"
             />
               <Input
               value={this.state.postedBy}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="postedBy"
               placeholder="postedBy"
             />
               <Input
               value={this.state.comments}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="comments"
               placeholder="comments"
             />
               <Input
               value={this.state.postDate}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="postDate"
               placeholder="postDate"
             />
               <Input
               value={this.state.lastUpdated}
-              onChange={this.handleInputChange}
+              onChange={this.handleTaskChange}
               name="lastUpdated"
               placeholder="lastUpdated"
               />

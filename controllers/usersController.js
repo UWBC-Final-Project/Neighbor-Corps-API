@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 module.exports = {
   // ---> KPH Adding in from boilerplate
   findAll: function(req, res) {
-    console.log("farts")
     db.User
       .find(req.query)
       .sort({ date: -1 })
@@ -25,31 +24,47 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   // <---- KPH added from boilerplate
+  
+  // ====== FIND USER: Find the unique username from the database ======
   findOneByUsername: function( user, callback ) {
     db.User
       .findOne({ username: user })
-      .then(dbModel => callback(null, dbModel.username))
+      .then(dbModel => callback(null, dbModel))
       .catch(err => callback(err, null));
   },
-  signUp: function(user, password, callback) {
+
+  // ====== SIGN-UP ======
+  signUp: function(body, callback) {
+    //copy the body to the user
+    const user = Object.assign({}, body)
+
     db.User
-      .findOne({ username: user })
+      // Find username from the database
+      .findOne({ username: user.username })
       .then((dbModel) => {
+        // If username exists in database
         if(dbModel){
+          // Prompt user to choose another username
           callback( null, null, { msg: "Username already exists" } );
         } else {
           let salt = bcrypt.genSaltSync(7);
-          db.User.create({
-            username: user,
-            password: bcrypt.hashSync(password, salt)
-          }).then(dbModel => { 
+
+          user.password = bcrypt.hashSync(user.password, salt)
+
+          // Else username has not been used
+          // Create new username and password
+          db.User.create(user)
+          .then(dbModel => { 
             callback(null, dbModel.username);
           }).catch(err => callback(err, null));
         }
       })
       .catch(err => callback(err, null));
   },
-  signIn: function(password, user, callback) {
+
+  // ====== SIGN-IN ====== 
+  signIn: function(body, callback) {
+    const { user, password } = body;
     db.User
       .findOne({ username: user })
       .then((dbModel) => {
@@ -67,12 +82,16 @@ module.exports = {
       })
       .catch(err => callback(err, null));
   },
+
+  // ====== UPDATE USERNAME====== 
   update: function(req, callback) {
     db.User
       .findOneAndUpdate({ username: req.user }, req.body)
       .then(dbModel => callback(null, dbModel))
       .catch(err => callback(err, null));
   },
+
+  // ====== REMOVE ACCOUNT/USERNAME ====== 
   remove: function(userToDelete, callback) {
     db.User
       .findOneAndDelete({ username: userToDelete })
