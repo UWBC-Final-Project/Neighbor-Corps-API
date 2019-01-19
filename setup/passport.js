@@ -39,15 +39,15 @@ module.exports = function(app) {
   ));
 
   // Route to signup
-  passport.use("signup", new LocalStrategy({
-      usernameField: 'username',
-      passwordField: 'password'
-    }, 
-    function(username, password, done) {
-      userController.signUp( {user: username, password: password}, 
-        (error, username, message) => done(error, username, message));
-    }
-  ));
+  // passport.use("signup", new LocalStrategy({
+  //     usernameField: 'username',
+  //     passwordField: 'password'
+  //   }, 
+  //   function(username, password, done) {
+  //     userController.signUp( {user: username, password: password, email: email}, 
+  //       (error, username, message) => done(error, username, message));
+  //   }
+  // ));
 
   //Google strategy here
 }

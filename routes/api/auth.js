@@ -1,5 +1,6 @@
 const router = require("express").Router();
 var passport = require('passport');
+var userController = require('../../controllers/usersController');
 
 router.get("/test", (req, res) => {
   res.json({user: req.user, message: (req.user) ? "User session active" : "no session active"})
@@ -16,7 +17,16 @@ router.post("/login", passport.authenticate('login', {
 
 //insert google router here
 
-router.post("/signup", passport.authenticate('signup'), 
+router.post("/signup", (req, res, next) => {
+  userController.signUp( req.body, (error) => {
+    if(error) { 
+      res.json({ error: error });
+    } 
+    else {
+      next();
+    }
+  });
+}, passport.authenticate('login'), 
   // successRedirect: "/",
   // successMessage: true,
   // failureRedirect: "/auth",
@@ -24,7 +34,7 @@ router.post("/signup", passport.authenticate('signup'),
 (req, res) => res.json({user: req.user, message:"signed up"}));
 
 router.get("/logout", (req, res) => {
-  req.session.destroy(res.json({ user: req.user, message:"logged out"} ));
+  req.session.destroy(() => (res.json({ user: req.user, message:"logged out"} )));
 })
 
 module.exports = router;

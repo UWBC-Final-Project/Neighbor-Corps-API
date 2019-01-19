@@ -29,16 +29,18 @@ module.exports = {
   findOneByUsername: function( user, callback ) {
     db.User
       .findOne({ username: user })
-      .then(dbModel => callback(null, dbModel.username))
+      .then(dbModel => callback(null, dbModel))
       .catch(err => callback(err, null));
   },
 
   // ====== SIGN-UP ======
   signUp: function(body, callback) {
-    const { user, password} = body;
+    //copy the body to the user
+    const user = Object.assign({}, body)
+
     db.User
       // Find username from the database
-      .findOne({ username: user })
+      .findOne({ username: user.username })
       .then((dbModel) => {
         // If username exists in database
         if(dbModel){
@@ -46,12 +48,13 @@ module.exports = {
           callback( null, null, { msg: "Username already exists" } );
         } else {
           let salt = bcrypt.genSaltSync(7);
+
+          user.password = bcrypt.hashSync(user.password, salt)
+
           // Else username has not been used
           // Create new username and password
-          db.User.create({
-            username: user,
-            password: bcrypt.hashSync(password, salt)
-          }).then(dbModel => { 
+          db.User.create(user)
+          .then(dbModel => { 
             callback(null, dbModel.username);
           }).catch(err => callback(err, null));
         }
