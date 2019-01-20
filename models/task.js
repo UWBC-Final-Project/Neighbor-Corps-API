@@ -8,9 +8,15 @@ const taskSchema = new Schema({
   position: { type: Array }, // save what we grasp from Google map pinned location
   tags:[{type: String}],
   postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  comments: [{body:"string", by: mongoose.Schema.Types.ObjectId}],
+  // comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}],
   postDate: { type: Date, default: Date.now }, 
-  lastUpdated: { type: Date } 
+  lastUpdated: { type: Date },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 // Custom method `lastUpdatedDate`
