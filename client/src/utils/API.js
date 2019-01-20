@@ -64,6 +64,7 @@ export default {
   },
   // Saves a Comment to the database
   saveComment: function(commentData) {
+    console.log(commentData);
     return axios.post("/api/comments", commentData);
   }
   // <----  KPH Adding Boilerplate to get to the express API
