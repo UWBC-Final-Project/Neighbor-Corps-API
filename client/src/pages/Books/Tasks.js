@@ -137,7 +137,6 @@ class Tasks extends Component {
               name="lastUpdated"
               placeholder="lastUpdated"
               />
-              {/* // NEED SPECIAL ATTENTION TO MAKE IT REFLECT MODEL */}
               <FormBtn
                 disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}

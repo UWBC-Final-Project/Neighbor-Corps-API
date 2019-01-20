@@ -12,9 +12,8 @@ class Comments extends Component {
     comments: [],
     description: "",
     username: "",
-    // tags:[],
-    postedBy:"",
-    postDate:""
+    tags:[],
+    postedBy:""
   };
 
   // When the component mounts, load all Comments and save them to this.state.Comments
@@ -50,13 +49,12 @@ class Comments extends Component {
   // When the form is submitted, use the API.saveComment method to save the Comment data
   // Then reload Comments from the database
   handleFormSubmit = event => {
+    console.log("form submit testing");
     event.preventDefault();
       API.saveComment({
         description: this.state.description,
         username: this.state.username,
         tags: this.state.tags,
-        postedBy: this.state.postedBy,
-        postDate: this.state.postDate
         // i think posted by and usename is kind of getting 
         //the same information, lets discuss if we need both 
         //or just one ~~ PK
@@ -76,7 +74,6 @@ class Comments extends Component {
               <h1>Comments</h1>
             </Jumbotron>
             <form>
-              {/* // !!!! NEEDS SPECIAL ATTENTION! */}
               <Input
                 value={this.state.description}
                 onChange={this.handleCommentChange}

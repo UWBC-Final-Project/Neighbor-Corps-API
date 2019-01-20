@@ -28,7 +28,7 @@ const userSchema = new Schema({
   },
   phone: { type: String },
   address: { type: String },
-  meritscore: { type: Number }
+  meritscore: { type: Number },
 });
 
 const User = mongoose.model("User", userSchema);
