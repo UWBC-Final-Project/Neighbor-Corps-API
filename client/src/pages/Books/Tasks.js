@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import API from '../../utils/API';
 
 class Tasks extends Component {
   // Setting our component's initial state
@@ -137,7 +138,6 @@ class Tasks extends Component {
               name="lastUpdated"
               placeholder="lastUpdated"
               />
-              {/* // NEED SPECIAL ATTENTION TO MAKE IT REFLECT MODEL */}
               <FormBtn
                 disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}
