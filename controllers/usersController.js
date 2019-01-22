@@ -25,6 +25,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   // <---- KPH added from boilerplate
+
+  // ====== FIND CURRENT USER: current session logged in by the user ======
+  findCurrentUser: function(req, res ) {
+    db.User
+      .findById(req.user._id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   
   // ====== FIND USER: Find the unique username from the database ======
   findOneByUsername: function( user, callback ) {
