@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(tasksController.findById)
-  .get(tasksController.findAllTasks)
+  .get(tasksController.findTaskWithAllComments)
   .put(tasksController.update)
   .delete(tasksController.remove)
   .post(tasksController.createComments);
