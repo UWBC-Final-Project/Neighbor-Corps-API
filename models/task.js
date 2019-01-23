@@ -11,12 +11,7 @@ const taskSchema = new Schema({
   // comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}],
   postDate: { type: Date, default: Date.now }, 
   lastUpdated: { type: Date },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment"
-    }
-  ]
+
 });
 
 // Custom method `lastUpdatedDate`

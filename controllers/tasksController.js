@@ -9,6 +9,25 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findAllTasks: function(req, res) {
+  db.Task.findOne({_id: req.params.id})
+      //... and populate all of the notes associated with it
+      .populate("Comments")
+      .then(function(dbTasks) {
+          // If we were able to successfully find a NewsArticle with the given id, send it back to the client
+          res.json(dbTasks);
+      });
+// });
+  },
+  createComments: function(req, res){
+     return db.Task.findOneAndUpdate({ _id: req.params.id },
+        { $push: { Comments: db.Comment._id }}, { new: true })
+    
+    .then(function(dbTask) {
+      // If we were able to successfully update an NewsArticle, send it back to the client
+      res.json(dbTask);
+    })
+},
   findById: function(req, res) {
     db.Task
       .findById(req.params.id)

@@ -54,6 +54,10 @@ export default {
   getComments: function() {
     return axios.get("/api/comments");
   },
+  // get all the comments related to a specific task. 
+  getComments: function(id) {
+    return axios.get("/api/tasks/" + id);
+  },
   // Gets the Comment with the given id
   getComment: function(id) {
     return axios.get("/api/comments/" + id);
