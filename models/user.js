@@ -26,9 +26,22 @@ const userSchema = new Schema({
     //   message: props => `${props.value} is not a valid email!`
     // }
   },
-  phone: { type: String },
-  address: { type: String },
-  meritscore: { type: Number },
+  phone: { 
+    type: String 
+  },
+  address: {
+     type: String 
+    },
+  meritscore: {
+     type: Number 
+    },
+    // one user can have multiple tasks
+    tasksId: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Task"
+      }
+    ]
 });
 
 const User = mongoose.model("User", userSchema);
