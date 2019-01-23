@@ -9,7 +9,8 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-
+// we might use this querry in single task view page where we need one task and 
+// all the comments related to it. 
   findTaskWithAllComments: function(req, res) {
   db.Task.findOne({_id: req.params.id})
       //... and populate all of the comments associated with it
