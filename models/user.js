@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const validator = require('validator');
+const validator = require('validator');
 
 const userSchema = new Schema({
   username: {
@@ -21,10 +21,10 @@ const userSchema = new Schema({
     minlength: 5,
     trim: true,
     // unique: true,
-    // validate: {
-    //   validator: validator.isEmail,
-    //   message: props => `${props.value} is not a valid email!`
-    // }
+    validate: {
+      validator: validator.isEmail,
+      message: props => `${props.value} is not a valid email!`
+    }
   },
   phone: { type: String },
   address: { type: String },
