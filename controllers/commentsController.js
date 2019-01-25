@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = {
   find: function(req, res) {
     db.Comment
-      .find({}, '5c465a46ff393b002ac719ed')
+      .find({belongsToTask: req.params.id})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
