@@ -18,4 +18,9 @@ router
   .put(authUtils.validateLogin, commentsController.update)
   .delete(authUtils.validateLogin, commentsController.remove);
 
+// Matches with "/api/comments/task"
+router
+  .route("/task/:id")
+  .get(commentsController.find)
+
 module.exports = router;
