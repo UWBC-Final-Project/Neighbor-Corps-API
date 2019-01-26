@@ -92,19 +92,23 @@ module.exports = {
       .catch(err => callback(err, null));
   },
 
-  // ====== UPDATE USERNAME====== 
-  update: function(req, callback) {
+  // ====== UPDATE CURRENT USER'S ACCOUNT ====== 
+  update: function(req, res) {
     db.User
-      .findOneAndUpdate({ username: req.user }, req.body)
-      .then(dbModel => callback(null, dbModel))
-      .catch(err => callback(err, null));
+      .findOneAndUpdate({ _id: req.user._id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
 
-  // ====== REMOVE ACCOUNT/USERNAME ====== 
-  remove: function(userToDelete, callback) {
+  // ====== REMOVE CURRENT USER'S ACCOUNT ====== 
+  remove: function(req, res) {
     db.User
-      .findOneAndDelete({ username: userToDelete })
-      .then(dbModel => callback(null, dbModel))
-      .catch(err => callback(err, null));
+      .findOneAndDelete({ _id: req.user._id })
+      .then(() => {
+        req.session.destroy(() => {
+          res.json({ user: req.user, message: "deleted account and logged out "} );
+        });
+      })
+      .catch(err => res.status(422).json(err));
   }
 };

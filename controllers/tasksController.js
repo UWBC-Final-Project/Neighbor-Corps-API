@@ -5,6 +5,31 @@ module.exports = {
   findAll: function(req, res) {
     db.Task
       .find(req.query)
+      .populate({
+        path: 'comments', 
+        populate: {
+          path:'postedBy',
+          model:'User'
+        }
+      })
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  // Find all tasks for current user
+  findAllForUser: function(req, res) {
+    db.Task
+      .find({ postedBy: req.user._id })
+      // Comments are posted by user
+      // Populate to return comment object instead of comment ID
+      // Populate to return user object instead of user ID 
+      .populate({
+        path: 'comments', 
+        populate: {
+          path:'postedBy',
+          model:'User'
+        }
+      })
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -12,10 +37,20 @@ module.exports = {
   findById: function(req, res) {
     db.Task
       .findById(req.params.id)
+      .populate({
+        path: 'comments', 
+        populate: {
+          path:'postedBy',
+          model:'User'
+        }
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    //sets the postedBy value in the body to the current users id
+    req.body.postedBy = req.user._id;
+
     db.Task
       .create(req.body)
       .then(dbModel => res.json(dbModel))
