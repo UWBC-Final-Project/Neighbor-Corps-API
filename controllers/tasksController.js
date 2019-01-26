@@ -20,10 +20,14 @@ module.exports = {
   findAllForUser: function(req, res) {
     db.Task
       .find({ postedBy: req.user._id })
+      // Tasks are posted by user
+      // Populate to return user object instead of user ID ie. user who created the task
+      .populate('postedBy')
       // Comments are posted by user
       // Populate to return comment object instead of comment ID
-      // Populate to return user object instead of user ID 
-      .populate({
+      // Populate to return user object instead of user ID ie. user who created the comment
+      .populate(
+        {
         path: 'comments', 
         populate: {
           path:'postedBy',
