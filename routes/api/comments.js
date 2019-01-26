@@ -13,9 +13,9 @@ router
   .put(commentsController.update)
   .delete(commentsController.remove);
 
-// Matches with "/api/comments/task/:id"
+// Matches with "/api/comments/:belongsToTask"
 router
-  .route("/task/:id")
+  .route("/:belongsToTask")
   .get(commentsController.find)
 
 module.exports = router;
