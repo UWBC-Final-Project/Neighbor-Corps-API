@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Task
       .find(req.query)
+      .populate('postedBy')
       .populate({
         path: 'comments', 
         populate: {
@@ -41,6 +42,7 @@ module.exports = {
   findById: function(req, res) {
     db.Task
       .findById(req.params.id)
+      .populate('postedBy')
       .populate({
         path: 'comments', 
         populate: {
