@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 const validator = require('validator');
 
 const userSchema = new Schema({
+  firstName: { type: String },
+  lastName: { type: String },
   username: {
     type: String,
     required: true,
@@ -26,9 +28,11 @@ const userSchema = new Schema({
       message: props => `${props.value} is not a valid email!`
     }
   },
-  phone: { type: String },
-  address: { type: String },
-  meritscore: { type: Number },
+  phone: { type: Number },
+  aboutMe: { type: String },
+  zipcode: { type: Number },
+  terms: { type: Boolean},
+  meritscore: { type: Number }
 });
 
 const User = mongoose.model("User", userSchema);
