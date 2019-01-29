@@ -94,7 +94,18 @@ module.exports = {
 
   // ====== UPDATE CURRENT USER'S ACCOUNT ====== 
   update: function(req, res) {
+    // updating new password
+    // if there is new password from the body of the request
+    // ie. new password value filled in by the user
+    if(req.body.password) {
+      // Add salt for extra security
+      let salt = bcrypt.genSaltSync(7);
+      // new password is now stored as the encrypted password with salt
+      req.body.password = bcrypt.hashSync(req.body.password, salt)
+    }
+
     db.User
+      // find user by the id and update the req body with new properties
       .findOneAndUpdate({ _id: req.user._id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

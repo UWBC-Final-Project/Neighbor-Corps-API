@@ -10,6 +10,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
     trim: true,
+    // unique username
     unique: true
   },
   password: {
@@ -19,10 +20,12 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    // required: true,
+    required: true,
     minlength: 5,
     trim: true,
-    // unique: true,
+    // unique email
+    unique: true,
+    // validate email 
     validate: {
       validator: validator.isEmail,
       message: props => `${props.value} is not a valid email!`
