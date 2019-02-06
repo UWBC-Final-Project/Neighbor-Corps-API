@@ -35,7 +35,7 @@ module.exports = function(app) {
     }, 
     function(username, password, done) {
       userController.signIn( {user: username, password: password}, 
-        (error, username, message) => done(error, username, message));
+        (error, username) => done(error, username));
     }
   ));
 

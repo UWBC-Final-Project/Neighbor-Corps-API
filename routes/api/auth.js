@@ -9,13 +9,12 @@ router.get("/test", (req, res) => {
 
 // Matches with /api/auth/login
 // Passport Documentation: http://www.passportjs.org/docs/authenticate/
-router.post("/login", passport.authenticate('login', {
-  // successRedirect: "/",
-  // successMessage: true,
-  // failureRedirect: "/login",
-  // failureMessage: true
-}),
-(req, res) => res.json({user: req.user, message:"logged in"}));
+router.post("/login", 
+passport.authenticate('login', { failWithError: true}),
+(req, res) => res.json({user: req.user, message:"logged in"}),
+(error, req, res, next) => {
+  res.json({ error: error.message});
+});
 
 //insert google router here
 
@@ -23,7 +22,7 @@ router.post("/login", passport.authenticate('login', {
 router.post("/signup", (req, res, next) => {
   userController.signUp( req.body, (error) => {
     if(error) { 
-      res.json({ error: error });
+      res.json({ error: error.message });
     } 
     else {
       next();
