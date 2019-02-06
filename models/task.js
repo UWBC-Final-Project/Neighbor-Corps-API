@@ -20,7 +20,11 @@ const taskSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment"
     }
-  ]
+  ],
+  taskCompletion: {
+    type: Boolean,
+    default: false
+  },
 });
 
 // Custom method `lastUpdatedDate`
