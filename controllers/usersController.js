@@ -54,18 +54,22 @@ module.exports = {
         // If username exists in database
         if(dbModel){
           // Prompt user to choose another username
-          callback( null, null, { msg: "Username already exists" } );
+          // This is corresponds to the (error, username)
+          callback({ message: "Username already exists." }, null );
+        
+        // Else username has not been used
         } else {
+          // Password encryption
           let salt = bcrypt.genSaltSync(7);
-
           user.password = bcrypt.hashSync(user.password, salt)
 
-          // Else username has not been used
           // Create new username and password
           db.User.create(user)
           .then(dbModel => { 
             callback(null, dbModel.username);
-          }).catch(err => callback(err, null));
+          }).catch(err => {
+            callback(err, null)
+          });
         }
       })
       .catch(err => callback(err, null));
@@ -82,11 +86,11 @@ module.exports = {
             callback(null, dbModel.username);
           }
           else {
-            callback(null, null, { msg: "Incorrect Password" });
+            callback({ message: "Incorrect Password" }, null);
           }
         }
         else { 
-          callback(null, null, {msg: "User does not exist" });
+          callback({message: "Username does not exist." }, null);
         }
       })
       .catch(err => callback(err, null));
