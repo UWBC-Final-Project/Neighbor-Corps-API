@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "10.3.0"
+  },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -12,7 +15,8 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "test": "mocha || true"
+    "test": "mocha || true",
+    "dev-backend": "nodemon --inspect server.js"
   },
   "author": "",
   "license": "ISC",
@@ -31,11 +35,14 @@
     "express-validator": "^5.3.1",
     "if-env": "^1.0.4",
     "mocha": "^5.2.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react-moment": "^0.8.4",
     "react-router-dom": "^4.3.1",
-    "sinon": "^7.2.2"
+    "sinon": "^7.2.2",
+    "validator": "^10.11.0"
   }
 }

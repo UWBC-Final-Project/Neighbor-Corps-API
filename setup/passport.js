@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.use(passport.session());
 
   // used to serialize the user for the session
-  // Start the session
+  // Start the session (login)
   passport.serializeUser(function(username, done) {
     // console.log('=== serialize ... called ===')
     // console.log(username) // the whole raw user object!
@@ -24,6 +24,7 @@ module.exports = function(app) {
     // console.log(username)
     // console.log('--------------')
     // Find the unique username
+    // done callback function puts the user found in req.user
     userController.findOneByUsername(username, done)
   })
 
@@ -34,7 +35,7 @@ module.exports = function(app) {
     }, 
     function(username, password, done) {
       userController.signIn( {user: username, password: password}, 
-        (error, username, message) => done(error, username, message));
+        (error, username) => done(error, username));
     }
   ));
 
