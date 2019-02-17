@@ -1,4 +1,4 @@
-const authUtils = require('../../client/src/utils/authMethods');
+const authUtils = require('../../utils/authMethods');
 const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const authUtils = require('../../client/src/utils/authMethods');
+const authUtils = require('../../utils/authMethods');
 const commentsController = require("../../controllers/commentsController");
 
 // Matches with "/api/comments"

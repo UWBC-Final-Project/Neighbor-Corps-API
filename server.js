@@ -31,7 +31,8 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/neighborCorps"
+  process.env.MONGODB_URI || "mongodb://localhost:27017/neighborCorps",
+  { useNewUrlParser: true }
 );
 
 // Start the API server
